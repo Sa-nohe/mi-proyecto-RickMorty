@@ -1,10 +1,10 @@
-// Función para cargar JSON de ingesta y mostrar tabla
+// Cargar JSON de ingesta y mostrar tabla
 async function cargarDatos(archivo) {
   try {
     const response = await fetch(archivo);
     const datos = await response.json();
     const tbody = document.querySelector('#tabla-ingesta tbody');
-    tbody.innerHTML = ''; // limpiar tabla
+    tbody.innerHTML = '';
 
     datos.forEach(fila => {
       const tr = document.createElement('tr');
@@ -24,13 +24,13 @@ async function cargarDatos(archivo) {
   }
 }
 
-// Función para cargar personajes de Rick and Morty
+// Cargar personajes de Rick and Morty
 async function cargarRickAndMorty() {
   try {
     const response = await fetch('https://rickandmortyapi.com/api/character');
     const data = await response.json();
     const contenedor = document.getElementById('rick-morty');
-    contenedor.innerHTML = ''; // limpiar
+    contenedor.innerHTML = '';
 
     data.results.slice(0, 6).forEach(personaje => {
       const div = document.createElement('div');

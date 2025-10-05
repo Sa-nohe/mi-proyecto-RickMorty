@@ -1,45 +1,50 @@
 // ingesta.js
-const axios = require('axios');
-const fs = require('fs');
 
 const lambdaFile = 'lambda.json';
 const kappaFile = 'kappa.json';
 
-// Función para obtener datos de Lambda (API)
+// Obtener Lambda desde JSON
 async function obtenerLambda() {
     try {
-        const response = await axios.get('https://rickandmortyapi.com/api/character');
-        const nombres = response.data.results.map(c => ({
-            name: c.name,
-            species: c.species,
-            status: c.status
-        }));
-        fs.writeFileSync(lambdaFile, JSON.stringify(nombres, null, 2));
-        return nombres;
+        const response = await fetch(lambdaFile);
+        const data = await response.json();
+        return data;
     } catch (error) {
-        console.error('Error al obtener los datos de Lambda:', error.message);
+        console.error('Error al obtener Lambda:', error);
         return [];
     }
 }
 
-// Función para obtener datos de Kappa (local)
-function obtenerKappa() {
+// Obtener Kappa desde JSON
+async function obtenerKappa() {
     try {
-        if (!fs.existsSync(kappaFile)) {
-            fs.writeFileSync(kappaFile, JSON.stringify([]));
-        }
-        const data = fs.readFileSync(kappaFile);
-        return JSON.parse(data);
+        const response = await fetch(kappaFile);
+        const data = await response.json();
+        return data;
     } catch (error) {
-        console.error('Error al obtener los datos de Kappa:', error.message);
+        console.error('Error al obtener Kappa:', error);
         return [];
     }
 }
 
-// Exportar las funciones para poder llamarlas desde front-end
-module.exports = {
-    obtenerLambda,
-    obtenerKappa
+// Mostrar datos en pantalla
+async function mostrarDatos(tipo) {
+    let data = [];
+    if(tipo === 'lambda') data = await obtenerLambda();
+    else if(tipo === 'kappa') data = await obtenerKappa();
+
+    const div = document.getElementById(tipo);
+    div.innerHTML = data.map(d => `${d.name} (${d.species}, ${d.status})`).join('<br>');
+}
+
+// Botones interactivos
+document.getElementById('btnLambda').addEventListener('click', () => mostrarDatos('lambda'));
+document.getElementById('btnKappa').addEventListener('click', () => mostrarDatos('kappa'));
+
+// Mostrar ambos al cargar
+window.onload = () => {
+    mostrarDatos('lambda');
+    mostrarDatos('kappa');
 };
 
 

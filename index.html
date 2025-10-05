@@ -1,62 +1,83 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Comparativa Lambda vs Kappa</title>
-  <style>
+<meta charset="UTF-8">
+<title>Comparativa Lambda vs Kappa - Rick & Morty</title>
+<style>
     body { font-family: Arial, sans-serif; padding: 20px; }
-    h1 { color: #2c3e50; }
-    h2 { color: #16a085; }
-    ul { list-style-type: square; }
-    .container { display: flex; gap: 50px; }
-    .box { flex: 1; }
-  </style>
+    h2 { margin-top: 30px; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 5px 0; padding: 5px; border-radius: 4px; transition: background-color 0.3s; }
+    li:hover { background-color: #eef; cursor: pointer; }
+    .lambda-only { background-color: #d1ffd1; }
+    .kappa-only { background-color: #ffd1d1; }
+    button { margin-right: 10px; padding: 10px 15px; font-size: 16px; }
+</style>
 </head>
 <body>
-  <h1>Comparativa Lambda vs Kappa</h1>
-  <div class="container">
-    <div class="box">
-      <h2>Lambda (API en tiempo real)</h2>
-      <ul id="lambda-list"></ul>
-    </div>
-    <div class="box">
-      <h2>Kappa (Datos guardados localmente)</h2>
-      <ul id="kappa-list"></ul>
-    </div>
-  </div>
+<h1>Comparativa Lambda vs Kappa</h1>
 
-  <script>
-    // --------------------
-    // Lambda
-    // --------------------
-    fetch('lambda.json')
-      .then(res => res.json())
-      .then(data => {
-        const ul = document.getElementById('lambda-list');
-        data.forEach(name => {
-          const li = document.createElement('li');
-          li.textContent = name;
-          ul.appendChild(li);
-        });
-      })
-      .catch(err => console.error('Error mostrando Lambda:', err));
+<button onclick="actualizarLambda()">Actualizar Lambda (API)</button>
+<button onclick="recargarKappa()">Recargar Kappa (local)</button>
 
-    // --------------------
-    // Kappa
-    // --------------------
-    fetch('kappa.json')
-      .then(res => res.json())
-      .then(data => {
-        const ul = document.getElementById('kappa-list');
-        data.forEach(name => {
-          const li = document.createElement('li');
-          li.textContent = name;
-          ul.appendChild(li);
+<h2>Lambda (API en tiempo real)</h2>
+<ul id="lambda-list"></ul>
+
+<h2>Kappa (Datos guardados localmente)</h2>
+<ul id="kappa-list"></ul>
+
+<script>
+    async function fetchLambda() {
+        const res = await fetch('lambda.json'); // aquí llamaremos al JSON generado por ingesta.js
+        return await res.json();
+    }
+
+    async function fetchKappa() {
+        const res = await fetch('kappa.json');
+        return await res.json();
+    }
+
+    async function actualizarLambda() {
+        // Simular actualización de Lambda
+        const lambda = await fetchLambda();
+        mostrarListas(lambda, await fetchKappa());
+    }
+
+    async function recargarKappa() {
+        const kappa = await fetchKappa();
+        mostrarListas(await fetchLambda(), kappa);
+    }
+
+    function mostrarListas(lambda, kappa) {
+        const lambdaList = document.getElementById('lambda-list');
+        const kappaList = document.getElementById('kappa-list');
+
+        lambdaList.innerHTML = '';
+        kappaList.innerHTML = '';
+
+        const kappaNames = kappa.map(c => c.name);
+
+        lambda.forEach(c => {
+            const li = document.createElement('li');
+            li.textContent = c.name + ` (${c.species}, ${c.status})`;
+            if (!kappaNames.includes(c.name)) li.classList.add('lambda-only');
+            lambdaList.appendChild(li);
         });
-      })
-      .catch(err => console.error('Error mostrando Kappa:', err));
-  </script>
+
+        const lambdaNames = lambda.map(c => c.name);
+        kappa.forEach(c => {
+            const li = document.createElement('li');
+            li.textContent = c.name + ` (${c.species}, ${c.status})`;
+            if (!lambdaNames.includes(c.name)) li.classList.add('kappa-only');
+            kappaList.appendChild(li);
+        });
+    }
+
+    // Mostrar listas al cargar la página
+    actualizarLambda();
+</script>
 </body>
 </html>
+
 
 

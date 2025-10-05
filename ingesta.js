@@ -1,47 +1,45 @@
+// ingesta.js
 const axios = require('axios');
 const fs = require('fs');
 
-// --------------------
-// Lambda (API en tiempo real)
-// --------------------
-axios.get('https://rickandmortyapi.com/api/character')
-  .then(response => {
-    const characters = response.data.results.map(c => c.name);
-    console.log("Lambda characters:", characters);
+const lambdaFile = 'lambda.json';
+const kappaFile = 'kappa.json';
 
-    // Guardamos en lambda.json
-    fs.writeFileSync('lambda.json', JSON.stringify(characters, null, 2));
-  })
-  .catch(err => console.error('Error Lambda:', err));
+// Función para obtener datos de Lambda (API)
+async function obtenerLambda() {
+    try {
+        const response = await axios.get('https://rickandmortyapi.com/api/character');
+        const nombres = response.data.results.map(c => ({
+            name: c.name,
+            species: c.species,
+            status: c.status
+        }));
+        fs.writeFileSync(lambdaFile, JSON.stringify(nombres, null, 2));
+        return nombres;
+    } catch (error) {
+        console.error('Error al obtener los datos de Lambda:', error.message);
+        return [];
+    }
+}
 
-// --------------------
-// Kappa (Datos guardados localmente)
-// --------------------
-const kappaCharacters = [
-  "Rick Sanchez",
-  "Morty Smith",
-  "Summer Smith",
-  "Beth Smith",
-  "Jerry Smith",
-  "Abadango Cluster Princess",
-  "Abradolf Lincler",
-  "Adjudicator Rick",
-  "Agency Director",
-  "Alan Rails",
-  "Albert Einstein",
-  "Alexander",
-  "Alien Googah",
-  "Alien Morty",
-  "Alien Rick",
-  "Amish Cyborg",
-  "Annie",
-  "Antenna Morty",
-  "Antenna Rick",
-  "Ants in my Eyes Johnson"
-];
+// Función para obtener datos de Kappa (local)
+function obtenerKappa() {
+    try {
+        if (!fs.existsSync(kappaFile)) {
+            fs.writeFileSync(kappaFile, JSON.stringify([]));
+        }
+        const data = fs.readFileSync(kappaFile);
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error al obtener los datos de Kappa:', error.message);
+        return [];
+    }
+}
 
-// Guardamos en kappa.json
-fs.writeFileSync('kappa.json', JSON.stringify(kappaCharacters, null, 2));
-console.log("Kappa characters:", kappaCharacters);
+// Exportar las funciones para poder llamarlas desde front-end
+module.exports = {
+    obtenerLambda,
+    obtenerKappa
+};
 
 

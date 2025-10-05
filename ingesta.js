@@ -1,50 +1,49 @@
-// ingesta.js
+// Función para cargar JSON de ingesta y mostrar tabla
+async function cargarDatos(archivo) {
+  try {
+    const response = await fetch(archivo);
+    const datos = await response.json();
+    const tbody = document.querySelector('#tabla-ingesta tbody');
+    tbody.innerHTML = ''; // limpiar tabla
 
-const lambdaFile = 'lambda.json';
-const kappaFile = 'kappa.json';
+    datos.forEach(fila => {
+      const tr = document.createElement('tr');
+      tr.classList.add(fila.tipo.replace(/\s+/g, ''));
 
-// Obtener Lambda desde JSON
-async function obtenerLambda() {
-    try {
-        const response = await fetch(lambdaFile);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al obtener Lambda:', error);
-        return [];
-    }
+      tr.innerHTML = `
+        <td>${fila.nombre}</td>
+        <td>${fila.tipo}</td>
+        <td>${fila.tiempoRespuesta}</td>
+        <td>${fila.memoria}</td>
+        <td class="${fila.estado}">${fila.estado}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  } catch (error) {
+    console.error('Error al cargar el archivo JSON:', error);
+  }
 }
 
-// Obtener Kappa desde JSON
-async function obtenerKappa() {
-    try {
-        const response = await fetch(kappaFile);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al obtener Kappa:', error);
-        return [];
-    }
+// Función para cargar personajes de Rick and Morty
+async function cargarRickAndMorty() {
+  try {
+    const response = await fetch('https://rickandmortyapi.com/api/character');
+    const data = await response.json();
+    const contenedor = document.getElementById('rick-morty');
+    contenedor.innerHTML = ''; // limpiar
+
+    data.results.slice(0, 6).forEach(personaje => {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <p><strong>${personaje.name}</strong> (${personaje.status})</p>
+        <img src="${personaje.image}" width="100">
+      `;
+      contenedor.appendChild(div);
+    });
+  } catch (error) {
+    console.error('Error al cargar personajes:', error);
+  }
 }
 
-// Mostrar datos en pantalla
-async function mostrarDatos(tipo) {
-    let data = [];
-    if(tipo === 'lambda') data = await obtenerLambda();
-    else if(tipo === 'kappa') data = await obtenerKappa();
-
-    const div = document.getElementById(tipo);
-    div.innerHTML = data.map(d => `${d.name} (${d.species}, ${d.status})`).join('<br>');
-}
-
-// Botones interactivos
-document.getElementById('btnLambda').addEventListener('click', () => mostrarDatos('lambda'));
-document.getElementById('btnKappa').addEventListener('click', () => mostrarDatos('kappa'));
-
-// Mostrar ambos al cargar
-window.onload = () => {
-    mostrarDatos('lambda');
-    mostrarDatos('kappa');
-};
 
 

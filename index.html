@@ -1,83 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Comparativa Lambda vs Kappa - Rick & Morty</title>
-<style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    h2 { margin-top: 30px; }
-    ul { list-style-type: none; padding: 0; }
-    li { margin: 5px 0; padding: 5px; border-radius: 4px; transition: background-color 0.3s; }
-    li:hover { background-color: #eef; cursor: pointer; }
-    .lambda-only { background-color: #d1ffd1; }
-    .kappa-only { background-color: #ffd1d1; }
-    button { margin-right: 10px; padding: 10px 15px; font-size: 16px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparativa de Ingestas y Rick & Morty</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f4f4f4; }
+    .WebSocket { background-color: #cce5ff; }
+    .GraphQL { background-color: #d4edda; }
+    .BatchLoad { background-color: #fff3cd; }
+    .ALERTA { color: red; font-weight: bold; }
+    #rick-morty div { display: inline-block; margin: 10px; text-align: center; }
+  </style>
 </head>
 <body>
-<h1>Comparativa Lambda vs Kappa</h1>
 
-<button onclick="actualizarLambda()">Actualizar Lambda (API)</button>
-<button onclick="recargarKappa()">Recargar Kappa (local)</button>
+  <h1>Comparativa de Ingestas</h1>
 
-<h2>Lambda (API en tiempo real)</h2>
-<ul id="lambda-list"></ul>
+  <button onclick="cargarDatos('lambda.json')">Cargar Lambda</button>
+  <button onclick="cargarDatos('kappa.json')">Cargar Kappa</button>
+  
+  <table id="tabla-ingesta">
+    <thead>
+      <tr>
+        <th>Fuente</th>
+        <th>Tipo</th>
+        <th>Tiempo de Respuesta (ms)</th>
+        <th>Memoria (MB)</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-<h2>Kappa (Datos guardados localmente)</h2>
-<ul id="kappa-list"></ul>
+  <h2>Personajes de Rick and Morty</h2>
+  <button onclick="cargarRickAndMorty()">Cargar Personajes</button>
+  <div id="rick-morty"></div>
 
-<script>
-    async function fetchLambda() {
-        const res = await fetch('lambda.json'); // aquí llamaremos al JSON generado por ingesta.js
-        return await res.json();
-    }
-
-    async function fetchKappa() {
-        const res = await fetch('kappa.json');
-        return await res.json();
-    }
-
-    async function actualizarLambda() {
-        // Simular actualización de Lambda
-        const lambda = await fetchLambda();
-        mostrarListas(lambda, await fetchKappa());
-    }
-
-    async function recargarKappa() {
-        const kappa = await fetchKappa();
-        mostrarListas(await fetchLambda(), kappa);
-    }
-
-    function mostrarListas(lambda, kappa) {
-        const lambdaList = document.getElementById('lambda-list');
-        const kappaList = document.getElementById('kappa-list');
-
-        lambdaList.innerHTML = '';
-        kappaList.innerHTML = '';
-
-        const kappaNames = kappa.map(c => c.name);
-
-        lambda.forEach(c => {
-            const li = document.createElement('li');
-            li.textContent = c.name + ` (${c.species}, ${c.status})`;
-            if (!kappaNames.includes(c.name)) li.classList.add('lambda-only');
-            lambdaList.appendChild(li);
-        });
-
-        const lambdaNames = lambda.map(c => c.name);
-        kappa.forEach(c => {
-            const li = document.createElement('li');
-            li.textContent = c.name + ` (${c.species}, ${c.status})`;
-            if (!lambdaNames.includes(c.name)) li.classList.add('kappa-only');
-            kappaList.appendChild(li);
-        });
-    }
-
-    // Mostrar listas al cargar la página
-    actualizarLambda();
-</script>
+  <script src="ingesta.js"></script>
 </body>
 </html>
+
+
+
+
 
 
 

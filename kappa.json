@@ -1,17 +1,16 @@
 [
   {
-    "nombre": "Flujo A→B",
-    "tipo": "Batch Load",
-    "tiempoRespuesta": 500,
-    "memoria": 100,
-    "estado": "OK"
+    "Fuente": "NASA API",
+    "Tipo": "REST",
+    "Tiempo": 180,
+    "Memoria": 65,
+    "Estado": "Activo"
   },
   {
-    "nombre": "Flujo B→C",
-    "tipo": "Batch Load",
-    "tiempoRespuesta": 700,
-    "memoria": 150,
-    "estado": "ALERTA"
+    "Fuente": "OpenWeather API",
+    "Tipo": "REST",
+    "Tiempo": 220,
+    "Memoria": 80,
+    "Estado": "Inactivo"
   }
 ]
-

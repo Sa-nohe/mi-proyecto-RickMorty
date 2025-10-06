@@ -1,17 +1,18 @@
 [
   {
-    "nombre": "Flujo A→B",
-    "tipo": "WebSocket",
-    "tiempoRespuesta": 120,
-    "memoria": 50,
-    "estado": "OK"
+    "Fuente": "Rick & Morty API",
+    "Tipo": "REST",
+    "Tiempo": 120,
+    "Memoria": 50,
+    "Estado": "Activo"
   },
   {
-    "nombre": "Flujo B→C",
-    "tipo": "GraphQL",
-    "tiempoRespuesta": 250,
-    "memoria": 80,
-    "estado": "ALERTA"
+    "Fuente": "PokeAPI",
+    "Tipo": "REST",
+    "Tiempo": 200,
+    "Memoria": 70,
+    "Estado": "Inactivo"
   }
 ]
+
 

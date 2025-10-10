@@ -1,0 +1,23 @@
+[
+  {
+    "Fuente": "Sensor Temperatura",
+    "Tipo": "Streaming",
+    "Tiempo": "50ms",
+    "Memoria": "128MB",
+    "Estado": "Success"
+  },
+  {
+    "Fuente": "Registro Logs",
+    "Tipo": "Batch",
+    "Tiempo": "200ms",
+    "Memoria": "256MB",
+    "Estado": "Success"
+  },
+  {
+    "Fuente": "Datos Usuarios",
+    "Tipo": "Batch",
+    "Tiempo": "350ms",
+    "Memoria": "512MB",
+    "Estado": "Success"
+  }
+]

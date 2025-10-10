@@ -1,20 +1,34 @@
-[
-  {
-    "id": 1,
-    "usuario": "admin",
-    "query": "SELECT COUNT(*) FROM usuarios",
-    "resultado": "150"
-  },
-  {
-    "id": 2,
-    "usuario": "report",
-    "query": "SELECT * FROM logs WHERE fecha='2025-10-01'",
-    "resultado": "45 filas"
-  },
-  {
-    "id": 3,
-    "usuario": "analyst",
-    "query": "SELECT AVG(sesiones) FROM visitas",
-    "resultado": "320"
-  }
-]
+{
+  "lambda": [
+    {
+      "Fuente": "Sensor Temperatura",
+      "Tipo": "Streaming",
+      "Tiempo": "50ms",
+      "Memoria": "128MB",
+      "Estado": "Success"
+    },
+    {
+      "Fuente": "Registro Logs",
+      "Tipo": "Batch",
+      "Tiempo": "200ms",
+      "Memoria": "256MB",
+      "Estado": "Success"
+    }
+  ],
+  "kappa": [
+    {
+      "Fuente": "Sensor Temperatura",
+      "Tipo": "Streaming",
+      "Tiempo": "60ms",
+      "Memoria": "128MB",
+      "Estado": "Success"
+    },
+    {
+      "Fuente": "Registro Logs",
+      "Tipo": "Batch",
+      "Tiempo": "180ms",
+      "Memoria": "256MB",
+      "Estado": "Fail"
+    }
+  ]
+}

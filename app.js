@@ -16,20 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---------- Rick & Morty ----------
   const characterContainer = document.getElementById("characterContainer");
+  let characters = []; // variable global para búsqueda
 
   async function getCharacters() {
       try {
           const response = await fetch("https://rickandmortyapi.com/api/character");
           const data = await response.json();
-          displayCharacters(data.results);
+          characters = data.results;
+          displayCharacters(characters);
       } catch (error) {
           console.error("Error cargando personajes:", error);
       }
   }
 
-  function displayCharacters(characters) {
+  function displayCharacters(list) {
       characterContainer.innerHTML = "";
-      characters.forEach(c => {
+      list.forEach(c => {
           const card = document.createElement("div");
           card.classList.add("card-character");
           card.innerHTML = `
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <h3>${c.name}</h3>
               <p>Status: ${c.status}</p>
           `;
-          card.addEventListener("click", () => openModal(c)); // Modal
+          card.addEventListener("click", () => openModal(c));
           characterContainer.appendChild(card);
       });
   }
@@ -64,6 +66,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeModal.onclick = () => modal.style.display = "none";
   window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
+
+  // ---------- Búsqueda ----------
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = characters.filter(c => c.name.toLowerCase().includes(query));
+      displayCharacters(filtered);
+  });
 
   getCharacters();
 

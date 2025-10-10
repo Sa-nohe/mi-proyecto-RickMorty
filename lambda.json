@@ -1,5 +1,5 @@
 {
-  "descripcion": "Arquitectura Lambda: combina procesamiento batch y en tiempo real.",
-  "ventajas": ["Procesamiento en tiempo real", "Alta escalabilidad"],
-  "desventajas": ["Complejidad en mantenimiento", "Costos mayores"]
+  "descripcion": "Lambda es una arquitectura que combina procesamiento batch y streaming.",
+  "ventajas": ["Procesamiento rápido", "Escalable"],
+  "desventajas": ["Complejidad en mantenimiento", "Duplicación de datos"]
 }

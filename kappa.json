@@ -1,7 +1,7 @@
 {
-  "descripcion": "Arquitectura Kappa: solo procesamiento en streaming.",
-  "ventajas": ["Simplicidad", "Procesamiento unificado en streaming"],
-  "desventajas": ["No soporta batch tradicional", "Curva de aprendizaje"]
+  "descripcion": "Kappa es una arquitectura que procesa datos en tiempo real.",
+  "ventajas": ["Simplicidad", "Menor duplicación de datos"],
+  "desventajas": ["Difícil manejo de historial", "Requiere infraestructura potente"]
 }
 
 

@@ -23,7 +23,7 @@ function displayCharacters(characters) {
     characterContainer.innerHTML = "";
     characters.forEach(c => {
         const card = document.createElement("div");
-        card.classList.add("card");
+        card.classList.add("card-character");  // <-- aquí usamos la clase nueva
         card.innerHTML = `
             <img src="${c.image}" alt="${c.name}">
             <h3>${c.name}</h3>
@@ -33,6 +33,7 @@ function displayCharacters(characters) {
         characterContainer.appendChild(card);
     });
 }
+
 
 getCharacters();
 
@@ -55,7 +56,7 @@ document.getElementById("btnComparativa").addEventListener("click", async () => 
 function mostrarComparativa(lambda, kappa) {
     const container = document.getElementById("cardsContainer");
     container.innerHTML = `
-      <div class="card">
+      <div class="card-architecture">
         <h2>${lambda.titulo}</h2>
         <p>${lambda.descripcion}</p>
         <h3>Ventajas:</h3>
@@ -63,7 +64,7 @@ function mostrarComparativa(lambda, kappa) {
         <h3>Desventajas:</h3>
         <ul>${lambda.desventajas.map(d => `<li>${d}</li>`).join("")}</ul>
       </div>
-      <div class="card">
+      <div class="card-architecture">
         <h2>${kappa.titulo}</h2>
         <p>${kappa.descripcion}</p>
         <h3>Ventajas:</h3>
@@ -73,4 +74,5 @@ function mostrarComparativa(lambda, kappa) {
       </div>
     `;
 }
+
 

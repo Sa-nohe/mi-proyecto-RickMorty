@@ -23,7 +23,7 @@ function displayCharacters(characters) {
     characterContainer.innerHTML = "";
     characters.forEach(c => {
         const card = document.createElement("div");
-        card.classList.add("card-character");  // <-- aquí usamos la clase nueva
+        card.classList.add("card-character");  // clase específica para Rick & Morty
         card.innerHTML = `
             <img src="${c.image}" alt="${c.name}">
             <h3>${c.name}</h3>
@@ -34,16 +34,17 @@ function displayCharacters(characters) {
     });
 }
 
-
 getCharacters();
 
 // ---------------- Comparativa Lambda vs Kappa ----------------
 document.getElementById("btnComparativa").addEventListener("click", async () => {
     try {
         const lambdaRes = await fetch("lambda.json");
+        if (!lambdaRes.ok) throw new Error("No se pudo cargar lambda.json");
         const lambdaData = await lambdaRes.json();
 
         const kappaRes = await fetch("kappa.json");
+        if (!kappaRes.ok) throw new Error("No se pudo cargar kappa.json");
         const kappaData = await kappaRes.json();
 
         mostrarComparativa(lambdaData, kappaData);
@@ -74,5 +75,4 @@ function mostrarComparativa(lambda, kappa) {
       </div>
     `;
 }
-
 

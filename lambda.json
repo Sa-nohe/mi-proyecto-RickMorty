@@ -1,14 +1,5 @@
 {
-  "titulo": "Arquitectura Lambda",
-  "descripcion": "Procesa datos en batch y en tiempo real mediante dos capas de procesamiento.",
-  "ventajas": [
-    "Flexibilidad en diferentes cargas de trabajo",
-    "Soporta batch y streaming",
-    "Alta tolerancia a fallos"
-  ],
-  "desventajas": [
-    "Complejidad en mantenimiento",
-    "Duplicación de lógica en capas"
-  ]
+  "descripcion": "Arquitectura Lambda: combina procesamiento batch y en tiempo real.",
+  "ventajas": ["Procesamiento en tiempo real", "Alta escalabilidad"],
+  "desventajas": ["Complejidad en mantenimiento", "Costos mayores"]
 }
-

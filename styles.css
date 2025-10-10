@@ -1,43 +1,86 @@
-/* ===== ESTILO GENERAL ===== */
 body {
   font-family: Arial, sans-serif;
-  background-color: #1e1e1e;
-  color: #fff;
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
+  background: #f0f4f8;
+  color: #333;
 }
 
-h1 {
+header {
+  background: #2c3e50;
+  color: white;
+  padding: 15px;
   text-align: center;
-  padding: 20px;
-  margin: 0;
-  background: #111;
-  color: #00ff9d;
-  border-bottom: 3px solid #00cc7a;
 }
 
-section {
-  margin: 30px auto;
-  max-width: 1000px;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-}
-
-/* ===== SECCIÓN 1: API Rick & Morty ===== */
-#api-section {
-  background: #2c2c2c;
-}
-
-#buscador-container {
-  margin: 20px auto;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+h1, h2 {
+  margin: 15px 0;
 }
 
 #buscador {
+  display: flex;
+  justify-content: center;
   padding: 10px;
-  border-radius: 8px;
-  border: 2px sol
+}
 
+#buscador input {
+  width: 60%;
+  padding: 10px;
+  border: 2px solid #2c3e50;
+  border-radius: 5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+  border-bottom: 2px solid #ddd;
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+/* Tabla comparativa */
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table th {
+  background: #2c3e50;
+  color: white;
+}
+
+.lambda.success { background: #d4edda; }
+.lambda.fail { background: #f8d7da; }
+.kappa.success { background: #cce5ff; }
+.kappa.fail { background: #f8d7da; }

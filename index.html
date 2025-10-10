@@ -3,54 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proyecto Arquitecturas</title>
+  <title>Rick & Morty + Comparativa</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Proyecto: API + Lambda/Kappa + Batch/SQL</h1>
+  <header>
+    <h1>Rick & Morty + Arquitecturas Lambda y Kappa</h1>
+  </header>
 
-  <!-- Sección 1: API Rick and Morty -->
-  <section id="api-section">
-    <h2>API Rick and Morty</h2>
-    <div id="buscador-container">
-      <input type="text" id="buscador" placeholder="Buscar personaje...">
-    </div>
-    <div id="personajes"></div>
+  <!-- 🔍 Buscador -->
+  <section id="buscador">
+    <input type="text" id="search" placeholder="Buscar personaje...">
   </section>
 
-  <!-- Sección 2: Comparativa Lambda vs Kappa -->
-  <section id="lambda-kappa">
-    <h2>Comparativa Lambda vs Kappa</h2>
-    <button id="btnComparar">Cargar Comparativa</button>
-    <div id="cargando" style="display:none;">Cargando datos...</div>
-    <table border="1" id="tabla-ingesta">
+  <!-- 🎭 Rick & Morty API -->
+  <section>
+    <h2>Personajes de Rick & Morty (API)</h2>
+    <div id="personajes" class="grid"></div>
+  </section>
+
+  <!-- ⚡ Comparativa Lambda vs Kappa -->
+  <section>
+    <h2>Comparativa Arquitecturas</h2>
+    <button id="btnComparar">Mostrar Comparativa</button>
+    <div id="cargando" style="display:none;">Cargando...</div>
+    <table id="tabla-ingesta">
       <thead>
         <tr>
           <th>Fuente</th>
           <th>Tipo</th>
-          <th>Tiempo Lambda</th>
-          <th>Memoria Lambda</th>
-          <th>Estado Lambda</th>
-          <th>Tiempo Kappa</th>
-          <th>Memoria Kappa</th>
-          <th>Estado Kappa</th>
+          <th colspan="3">Lambda</th>
+          <th colspan="3">Kappa</th>
         </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
-  <!-- Sección 3: Batch / SQL -->
-  <section id="batch-sql">
-    <h2>Arquitectura Batch / SQL</h2>
-    <button id="btnBatch">Cargar Data Batch</button>
-    <table border="1" id="tabla-batch">
-      <thead>
         <tr>
-          <th>ID</th>
-          <th>Usuario</th>
-          <th>Consulta SQL</th>
-          <th>Resultado</th>
+          <th></th><th></th>
+          <th>Tiempo</th><th>Memoria</th><th>Estado</th>
+          <th>Tiempo</th><th>Memoria</th><th>Estado</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -58,8 +46,10 @@
   </section>
 
   <script src="app.js"></script>
+  <script src="ingesta.js"></script>
 </body>
 </html>
+
 
 
 

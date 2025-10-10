@@ -3,48 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rick y Morty API</title>
+  <title>Proyecto Arquitecturas</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #1e1e1e;
-      color: #fff;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      color: #00ff9d;
-    }
-    #personajes {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .card {
-      background: #2a2a2a;
-      border-radius: 12px;
-      padding: 10px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
-    }
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
-  </style>
 </head>
 <body>
-  <h1>Rick and Morty API</h1>
-  <div id="buscador-container">
-    <input type="text" id="buscador" placeholder="Buscar personaje...">
-    <button id="btnBuscar">Buscar</button>
-  </div>
+  <h1>Proyecto: API + Lambda/Kappa + Batch/SQL</h1>
 
-  <div id="personajes"></div>
+  <!-- Sección 1: API Rick and Morty -->
+  <section id="api-section">
+    <h2>API Rick and Morty</h2>
+    <div id="buscador-container">
+      <input type="text" id="buscador" placeholder="Buscar personaje...">
+    </div>
+    <div id="personajes"></div>
+  </section>
+
+  <!-- Sección 2: Comparativa Lambda vs Kappa -->
+  <section id="lambda-kappa">
+    <h2>Comparativa Lambda vs Kappa</h2>
+    <button id="btnComparar">Cargar Comparativa</button>
+    <div id="cargando" style="display:none;">Cargando datos...</div>
+    <table border="1" id="tabla-ingesta">
+      <thead>
+        <tr>
+          <th>Fuente</th>
+          <th>Tipo</th>
+          <th>Tiempo Lambda</th>
+          <th>Memoria Lambda</th>
+          <th>Estado Lambda</th>
+          <th>Tiempo Kappa</th>
+          <th>Memoria Kappa</th>
+          <th>Estado Kappa</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- Sección 3: Batch / SQL -->
+  <section id="batch-sql">
+    <h2>Arquitectura Batch / SQL</h2>
+    <button id="btnBatch">Cargar Data Batch</button>
+    <table border="1" id="tabla-batch">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Consulta SQL</th>
+          <th>Resultado</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
   <script src="app.js"></script>
 </body>
 </html>
+
 
 
 

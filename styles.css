@@ -1,67 +1,32 @@
+/* ===== ESTILO GENERAL ===== */
 body {
   font-family: Arial, sans-serif;
   background-color: #1e1e1e;
   color: #fff;
-  text-align: center;
   margin: 0;
   padding: 0;
 }
 
 h1 {
-  margin: 20px;
-  color: #00ff9d;
-}
-
-#buscador {
-  padding: 8px;
-  border-radius: 8px;
-  border: none;
-  outline: none;
-  width: 200px;
-}
-
-button {
-  padding: 8px 15px;
-  margin-left: 5px;
-  border: none;
-  border-radius: 8px;
-  background: #00ff9d;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover {
-  background: #00cc7a;
-}
-
-#personajes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  text-align: center;
   padding: 20px;
-}
-
-.card {
-  background: #2c2c2c;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.7);
-}
-
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.card h3 {
-  margin: 10px 0 5px;
+  margin: 0;
+  background: #111;
   color: #00ff9d;
+  border-bottom: 3px solid #00cc7a;
+}
+
+section {
+  margin: 30px auto;
+  max-width: 1000px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* ===== SECCIÓN 1: API Rick & Morty ===== */
+#api-section {
+  background: #2c2c2c;
 }
 
 #buscador-container {
@@ -70,4 +35,9 @@ button:hover {
   justify-content: center;
   gap: 10px;
 }
+
+#buscador {
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px sol
 

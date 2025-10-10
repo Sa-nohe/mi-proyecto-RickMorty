@@ -3,30 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rick & Morty + Arquitecturas</title>
+  <title>Proyecto Rick & Morty + Arquitecturas</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Header -->
   <header>
     <h1>Proyecto Rick & Morty + Arquitecturas Lambda/Kappa</h1>
   </header>
 
-  <!-- 🔹 Sección Rick y Morty -->
-  <section id="rickmorty">
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="tab-rm">Rick & Morty</button>
+    <button class="tab-btn" data-tab="tab-arch">Comparativa</button>
+  </div>
+
+  <!-- Contenido Tab Rick & Morty -->
+  <div id="tab-rm" class="tab-content active">
     <h2>Explorar personajes de Rick & Morty</h2>
     <input type="text" id="searchInput" placeholder="Buscar personaje...">
     <div id="characterContainer" class="cards"></div>
-  </section>
+  </div>
 
-  <hr>
-
-  <!-- 🔹 Sección Comparativa -->
-  <section id="arquitecturas">
+  <!-- Contenido Tab Comparativa -->
+  <div id="tab-arch" class="tab-content">
     <h2>Comparativa de Arquitecturas</h2>
     <button id="btnComparativa">Mostrar Comparativa Lambda vs Kappa</button>
     <div id="cardsContainer" class="cards"></div>
-  </section>
+  </div>
 
+  <!-- Scripts -->
   <script src="app.js"></script>
 </body>
 </html>

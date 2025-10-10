@@ -1,12 +1,21 @@
 // app.js
 
-async function obtenerPersonajes() {
+async function obtenerPersonajes(nombre = "") {
   try {
-    const response = await fetch("https://rickandmortyapi.com/api/character");
+    const url = nombre
+      ? `https://rickandmortyapi.com/api/character/?name=${nombre}`
+      : "https://rickandmortyapi.com/api/character";
+
+    const response = await fetch(url);
     const data = await response.json();
 
     const contenedor = document.getElementById("personajes");
     contenedor.innerHTML = ""; // limpiar antes de mostrar
+
+    if (data.error) {
+      contenedor.innerHTML = `<p>No se encontraron personajes con ese nombre.</p>`;
+      return;
+    }
 
     data.results.forEach(personaje => {
       const card = document.createElement("div");
@@ -26,4 +35,10 @@ async function obtenerPersonajes() {
   }
 }
 
-obtenerPersonajes();
+function buscarPersonaje() {
+  const nombre = document.getElementById("buscador").value;
+  obtenerPersonajes(nombre);
+}
+
+obtenerPersonajes(); // cargar personajes al inicio
+

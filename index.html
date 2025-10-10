@@ -2,7 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Rick y Morty App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rick y Morty API</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -35,7 +37,12 @@
 <body>
   <h1>Rick and Morty API</h1>
   <div id="personajes">Cargando personajes...</div>
+    <div>
+    <input type="text" id="buscador" placeholder="Busca un personaje...">
+    <button onclick="buscarPersonaje()">Buscar</button>
+  </div>
 
+  <div id="personajes">Cargando personajes...</div>
   <script src="app.js"></script>
 </body>
 </html>

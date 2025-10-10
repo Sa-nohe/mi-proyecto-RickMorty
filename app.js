@@ -1,49 +1,41 @@
-const personajesDiv = document.getElementById('personajes');
-const searchInput = document.getElementById('search');
-
-// Cargar personajes
-async function cargarPersonajes() {
+document.getElementById("btnComparativa").addEventListener("click", async () => {
     try {
-        const res = await fetch('https://rickandmortyapi.com/api/character');
-        const data = await res.json();
-        mostrarPersonajes(data.results);
-    } catch (error) {
-        console.error("Error al cargar personajes:", error);
-    }
-}
+        // Cargar Lambda
+        const lambdaRes = await fetch("lambda.json");
+        if (!lambdaRes.ok) throw new Error("No se pudo cargar lambda.json");
+        const lambdaData = await lambdaRes.json();
 
-// Mostrar tarjetas
-function mostrarPersonajes(personajes) {
-    personajesDiv.innerHTML = "";
-    personajes.forEach(p => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-            <img src="${p.image}" alt="${p.name}">
-            <h3>${p.name}</h3>
-            <p><strong>Estado:</strong> ${p.status}</p>
-            <p><strong>Especie:</strong> ${p.species}</p>
-        `;
-        personajesDiv.appendChild(card);
-    });
-}
+        // Cargar Kappa
+        const kappaRes = await fetch("kappa.json");
+        if (!kappaRes.ok) throw new Error("No se pudo cargar kappa.json");
+        const kappaData = await kappaRes.json();
 
-// Filtrar personajes
-searchInput.addEventListener("input", async (e) => {
-    const query = e.target.value.toLowerCase();
-    try {
-        const res = await fetch(`https://rickandmortyapi.com/api/character/?name=${query}`);
-        const data = await res.json();
-        if (data.results) {
-            mostrarPersonajes(data.results);
-        } else {
-            personajesDiv.innerHTML = "<p>No se encontraron personajes.</p>";
-        }
+        mostrarComparativa(lambdaData, kappaData);
     } catch (error) {
-        console.error("Error en búsqueda:", error);
+        console.error("Error al cargar la comparativa:", error);
+        alert("No se pudo cargar la comparativa");
     }
 });
 
-// Inicial
-cargarPersonajes();
+function mostrarComparativa(lambda, kappa) {
+    const container = document.getElementById("cardsContainer");
+    container.innerHTML = `
+      <div class="card">
+        <h2>${lambda.titulo}</h2>
+        <p>${lambda.descripcion}</p>
+        <h3>Ventajas:</h3>
+        <ul>${lambda.ventajas.map(v => `<li>${v}</li>`).join("")}</ul>
+        <h3>Desventajas:</h3>
+        <ul>${lambda.desventajas.map(d => `<li>${d}</li>`).join("")}</ul>
+      </div>
+      <div class="card">
+        <h2>${kappa.titulo}</h2>
+        <p>${kappa.descripcion}</p>
+        <h3>Ventajas:</h3>
+        <ul>${kappa.ventajas.map(v => `<li>${v}</li>`).join("")}</ul>
+        <h3>Desventajas:</h3>
+        <ul>${kappa.desventajas.map(d => `<li>${d}</li>`).join("")}</ul>
+      </div>
+    `;
+}
 

@@ -1,23 +1,14 @@
-[
-  {
-    "Fuente": "Sensor Temperatura",
-    "Tipo": "Streaming",
-    "Tiempo": "60ms",
-    "Memoria": "128MB",
-    "Estado": "Success"
-  },
-  {
-    "Fuente": "Registro Logs",
-    "Tipo": "Batch",
-    "Tiempo": "180ms",
-    "Memoria": "256MB",
-    "Estado": "Fail"
-  },
-  {
-    "Fuente": "Datos Usuarios",
-    "Tipo": "Streaming",
-    "Tiempo": "300ms",
-    "Memoria": "512MB",
-    "Estado": "Success"
-  }
-]
+{
+  "titulo": "Arquitectura Kappa",
+  "descripcion": "Procesa datos en streaming en una sola capa simplificada.",
+  "ventajas": [
+    "Menor complejidad",
+    "Unificación del código",
+    "Ideal para sistemas en tiempo real"
+  ],
+  "desventajas": [
+    "No tan eficiente en batch",
+    "Puede requerir almacenamiento adicional"
+  ]
+}
+

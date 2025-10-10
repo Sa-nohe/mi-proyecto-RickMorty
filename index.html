@@ -3,52 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rick & Morty + Comparativa</title>
+  <title>Comparativa Lambda vs Kappa</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Rick & Morty + Arquitecturas Lambda y Kappa</h1>
+    <h1>Arquitecturas de Ingesta</h1>
+    <button id="btnComparativa">Mostrar Comparativa Lambda vs Kappa</button>
   </header>
 
-  <!-- 🔍 Buscador -->
-  <section id="buscador">
-    <input type="text" id="search" placeholder="Buscar personaje...">
-  </section>
-
-  <!-- 🎭 Rick & Morty API -->
-  <section>
-    <h2>Personajes de Rick & Morty (API)</h2>
-    <div id="personajes" class="grid"></div>
-  </section>
-
-  <!-- ⚡ Comparativa Lambda vs Kappa -->
-  <section id="comparativa">
-  <h2>Comparativa Lambda vs Kappa</h2>
-  <button id="btnComparar">Mostrar Comparativa</button>
-  <div id="cargando" style="display:none;">Cargando datos...</div>
-  <table id="tabla-ingesta" border="1">
-    <thead>
-      <tr>
-        <th>Fuente</th>
-        <th>Tipo</th>
-        <th>Tiempo (Lambda)</th>
-        <th>Memoria (Lambda)</th>
-        <th>Estado (Lambda)</th>
-        <th>Tiempo (Kappa)</th>
-        <th>Memoria (Kappa)</th>
-        <th>Estado (Kappa)</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-</section>
-
+  <main>
+    <div id="cardsContainer" class="cards"></div>
+  </main>
 
   <script src="app.js"></script>
-  <script src="ingesta.js"></script>
 </body>
 </html>
+
 
 
 

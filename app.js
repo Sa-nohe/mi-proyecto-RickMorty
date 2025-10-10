@@ -23,7 +23,7 @@ function displayCharacters(characters) {
     characterContainer.innerHTML = "";
     characters.forEach(c => {
         const card = document.createElement("div");
-        card.classList.add("card-character");  // clase específica para Rick & Morty
+        card.classList.add("card-character");  // ✅ clase específica para Rick & Morty
         card.innerHTML = `
             <img src="${c.image}" alt="${c.name}">
             <h3>${c.name}</h3>

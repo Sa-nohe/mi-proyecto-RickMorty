@@ -1,10 +1,10 @@
-/* Tarjetas Rick & Morty */
+/* --- Tarjetas Rick & Morty --- */
 .card-character {
   background: white;
   padding: 8px;
   border-radius: 12px;
   box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
-  width: 120px;          /* tamaño reducido a la mitad */
+  width: 120px;       /* ✅ tamaño reducido */
   text-align: center;
   font-size: 12px;
 }
@@ -14,13 +14,13 @@
   border-radius: 8px;
 }
 
-/* Tarjetas comparativa Lambda/Kappa */
+/* --- Tarjetas comparativa Lambda/Kappa --- */
 .card-architecture {
   background: white;
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-  width: 300px;          /* tamaño grande para lectura */
+  width: 300px;       /* ✅ tamaño grande */
   text-align: left;
 }
 
@@ -60,3 +60,4 @@ input {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
+

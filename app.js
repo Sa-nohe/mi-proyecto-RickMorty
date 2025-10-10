@@ -24,6 +24,7 @@ async function getCharacters() {
         const data = await response.json();
         displayCharacters(data.results);
 
+        // Buscador en tiempo real
         searchInput.addEventListener("input", () => {
             const filtered = data.results.filter(c =>
                 c.name.toLowerCase().includes(searchInput.value.toLowerCase())
@@ -91,4 +92,5 @@ function mostrarComparativa(lambda, kappa) {
       </div>
     `;
 }
+
 
